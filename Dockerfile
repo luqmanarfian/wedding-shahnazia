@@ -1,7 +1,7 @@
 # ==========================================
 # Stage 1: Build Stage (Node.js Environment)
 # ==========================================
-FROM node:20-alpine3.21 AS build
+FROM node:24.12-alpine AS build
 
 WORKDIR /app
 
