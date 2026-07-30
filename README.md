@@ -293,7 +293,31 @@ Pipeline CI/CD dikonfigurasi melalui file [`Jenkinsfile`](./Jenkinsfile) dengan 
 
 ---
 
+## Keamanan & Docker Hardening (Security & Container Practices)
+
+Untuk memastikannya bebas dari kerentanan (*vulnerabilities*) yang dideteksi oleh **Trivy**, proyek ini mengimplementasikan praktik *DevSecOps* dan *security hardening* pada Dockerfile serta CI/CD pipeline:
+
+1. **Pembaruan Base Image Docker**:
+   - Stage Build menggunakan `node:24-alpine` untuk memastikan *compiler* dan *build tools* berbasis versi Alpine paling stabil dan aman.
+   - Stage Production menggunakan `nginxinc/nginx-unprivileged:1.27-alpine` untuk memperbarui sistem operasi dasar dan komponen Nginx.
+
+2. **Mitigasi Kerentanan OS Packages**:
+   - Eksekusi `apk update && apk upgrade --no-cache` pada stage build maupun stage produksi untuk secara otomatis memperbarui pustaka sistem (*OS packages*) ke versi *patch* keamanan terbaru.
+   - Menghapus pustaka berlebih yang tidak dibutuhkan pada runtime (`curl`, `libxml2`, `libxslt`) guna memperkecil *attack surface* dan menjaga ukuran *image* tetap ringan.
+
+3. **Prinsip Least Privilege**:
+   - Menjalankan kontainer pada runtime Nginx menggunakan akun non-root (`USER nginx`) demi memenuhi standar keamanan industri dan kepatuhan Kubernetes.
+
+4. **Keamanan Dependensi Node.js**:
+   - Audit otomatis dependensi npm via `npm audit` dipastikan berada pada status **0 vulnerabilities**.
+
+5. **Pemindaian Keamanan Otomatis (Trivy Scan)**:
+   - Integrasi Trivy scanner versi terbaru pada pipeline Jenkins (`Jenkinsfile`) untuk memindai severity `HIGH` dan `CRITICAL` sebelum proses *image push* dan *deployment* Kubernetes dilakukan.
+
+---
+
 ## Lisensi
 
 Proyek ini bersifat pribadi. Tidak diizinkan untuk mendistribusikan atau menggunakan ulang tanpa izin eksplisit.
+
 

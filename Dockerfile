@@ -1,9 +1,12 @@
 # ==========================================
 # Stage 1: Build Stage (Node.js Environment)
 # ==========================================
-FROM node:24.12-alpine AS build
+FROM node:24-alpine AS build
 
 WORKDIR /app
+
+# Upgrade OS packages di build stage untuk memastikan tidak ada kerentanan OS pada environment build
+RUN apk update && apk upgrade --no-cache
 
 # Salin package.json & package-lock.json terlebih dahulu untuk memanfaatkan cache layer Docker
 COPY package.json package-lock.json ./
@@ -22,7 +25,7 @@ RUN npm run build
 # ==========================================
 # Stage 2: Production Stage (Nginx Unprivileged Web Server)
 # ==========================================
-FROM nginxinc/nginx-unprivileged:1.27-alpine3.21
+FROM nginxinc/nginx-unprivileged:1.27-alpine
 
 # Sementara beralih ke root untuk menjalankan apk (nginx-unprivileged default user = nginx)
 USER root

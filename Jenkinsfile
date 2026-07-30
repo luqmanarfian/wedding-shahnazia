@@ -80,7 +80,7 @@ pipeline {
                 docker run --rm \
                   -v /var/run/docker.sock:/var/run/docker.sock \
                   -v trivy-cache-${APP_NAME}:/root/.cache/trivy \
-                  aquasec/trivy:0.51.1 image \
+                  aquasec/trivy:latest image \
                   --exit-code 1 \
                   --severity HIGH,CRITICAL \
                   ${IMAGE_NAME}:${IMAGE_TAG}
