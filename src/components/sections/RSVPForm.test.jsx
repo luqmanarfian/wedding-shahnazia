@@ -105,7 +105,7 @@ describe("RSVPForm Component", () => {
       message: "Gagal menghubungkan ke server."
     });
 
-    global.fetch = vi.fn().mockRejectedValue(new Error("Network Error"));
+    globalThis.fetch = vi.fn().mockRejectedValue(new Error("Network Error"));
 
     render(<RSVPForm />);
 
@@ -121,7 +121,7 @@ describe("RSVPForm Component", () => {
     fireEvent.click(downloadBtn);
 
     await waitFor(() => {
-      expect(global.fetch).toHaveBeenCalled();
+      expect(globalThis.fetch).toHaveBeenCalled();
     });
   });
 });

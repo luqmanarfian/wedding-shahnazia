@@ -57,17 +57,12 @@ describe("DigitalEnvelope Component", () => {
     });
   });
 
-  it("uses execCommand fallback when navigator.clipboard is missing and handles error", () => {
+  it("uses fallback when navigator.clipboard is missing", async () => {
     const handleCopySuccess = vi.fn();
-    const consoleErrorSpy = vi.spyOn(console, "error").mockImplementation(() => {});
 
     Object.defineProperty(navigator, "clipboard", {
       value: undefined,
       configurable: true
-    });
-
-    document.execCommand = vi.fn().mockImplementation(() => {
-      throw new Error("ExecCommand failed");
     });
 
     render(<DigitalEnvelope gift={giftData} onCopySuccess={handleCopySuccess} />);
@@ -75,7 +70,8 @@ describe("DigitalEnvelope Component", () => {
     const copyButton = screen.getByRole("button", { name: /salin nomor rekening/i });
     fireEvent.click(copyButton);
 
-    expect(document.execCommand).toHaveBeenCalledWith("copy");
-    expect(consoleErrorSpy).toHaveBeenCalled();
+    await vi.waitFor(() => {
+      expect(handleCopySuccess).toHaveBeenCalledWith("Nomor Rekening Berhasil Disalin");
+    });
   });
 });

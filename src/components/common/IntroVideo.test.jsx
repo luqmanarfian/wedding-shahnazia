@@ -56,6 +56,6 @@ describe("IntroVideo Component", () => {
     });
 
     expect(handleEnded).toHaveBeenCalled();
-    document.body.removeChild(scrollDiv);
+    scrollDiv.remove();
   });
 });

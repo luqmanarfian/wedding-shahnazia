@@ -1,5 +1,6 @@
 // src/components/sections/HeroSection.jsx
 import React, { useRef, useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import placeholderPortrait from "../../assets/images/placeholder-portrait.svg";
 import bgCardPortrait from "../../assets/images/bg-card-potrait.webp";
 import { weddingData } from "../../constants/weddingData";
@@ -88,13 +89,13 @@ export default function HeroSection({ couple, date, heroBgVideo }) {
     ].join("\r\n");
 
     const blob = new Blob([icsContent], { type: "text/calendar;charset=utf-8" });
-    const url = window.URL.createObjectURL(blob);
+    const url = globalThis.URL.createObjectURL(blob);
     const link = document.createElement("a");
     link.href = url;
     link.setAttribute("download", `Wedding-${groomName}-${brideName}.ics`);
     document.body.appendChild(link);
     link.click();
-    document.body.removeChild(link);
+    link.remove();
     setShowCalendarMenu(false);
   };
 
@@ -220,3 +221,24 @@ export default function HeroSection({ couple, date, heroBgVideo }) {
     </section>
   );
 }
+
+HeroSection.propTypes = {
+  couple: PropTypes.shape({
+    groom: PropTypes.shape({
+      shortName: PropTypes.string,
+      photo: PropTypes.string
+    }),
+    bride: PropTypes.shape({
+      shortName: PropTypes.string,
+      photo: PropTypes.string
+    }),
+    couple: PropTypes.shape({
+      photo: PropTypes.string
+    })
+  }),
+  date: PropTypes.shape({
+    formattedDay: PropTypes.string,
+    formattedDate: PropTypes.string
+  }),
+  heroBgVideo: PropTypes.string
+};

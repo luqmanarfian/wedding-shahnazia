@@ -3,14 +3,14 @@ import { submitToAppsScript } from "./apiService";
 import { weddingData } from "../constants/weddingData";
 
 describe("apiService - submitToAppsScript", () => {
-  const originalFetch = global.fetch;
+  const originalFetch = globalThis.fetch;
 
   beforeEach(() => {
     vi.restoreAllMocks();
   });
 
   afterEach(() => {
-    global.fetch = originalFetch;
+    globalThis.fetch = originalFetch;
   });
 
   it("handles missing URL gracefully with local fallback", async () => {
@@ -30,7 +30,7 @@ describe("apiService - submitToAppsScript", () => {
   it("submits payload successfully when URL is configured and server responds ok", async () => {
     vi.stubEnv("VITE_APPS_SCRIPT_URL", "https://script.google.com/test");
 
-    global.fetch = vi.fn().mockResolvedValue({
+    globalThis.fetch = vi.fn().mockResolvedValue({
       ok: true,
       json: async () => ({ success: true, message: "Data RSVP berhasil disimpan." })
     });
@@ -38,7 +38,7 @@ describe("apiService - submitToAppsScript", () => {
     const payload = { type: "rsvp", name: "John Doe" };
     const result = await submitToAppsScript(payload);
 
-    expect(global.fetch).toHaveBeenCalledWith(
+    expect(globalThis.fetch).toHaveBeenCalledWith(
       "https://script.google.com/test",
       expect.objectContaining({
         method: "POST",
@@ -53,7 +53,7 @@ describe("apiService - submitToAppsScript", () => {
   it("handles HTTP error status from server", async () => {
     vi.stubEnv("VITE_APPS_SCRIPT_URL", "https://script.google.com/test");
 
-    global.fetch = vi.fn().mockResolvedValue({
+    globalThis.fetch = vi.fn().mockResolvedValue({
       ok: false,
       status: 500
     });
@@ -69,7 +69,7 @@ describe("apiService - submitToAppsScript", () => {
     const abortError = new Error("The operation was aborted");
     abortError.name = "AbortError";
 
-    global.fetch = vi.fn().mockRejectedValue(abortError);
+    globalThis.fetch = vi.fn().mockRejectedValue(abortError);
 
     const result = await submitToAppsScript({ type: "rsvp" });
     expect(result.success).toBe(false);
@@ -79,7 +79,7 @@ describe("apiService - submitToAppsScript", () => {
   it("handles network connection error", async () => {
     vi.stubEnv("VITE_APPS_SCRIPT_URL", "https://script.google.com/test");
 
-    global.fetch = vi.fn().mockRejectedValue(new Error("Network Failure"));
+    globalThis.fetch = vi.fn().mockRejectedValue(new Error("Network Failure"));
 
     const result = await submitToAppsScript({ type: "rsvp" });
     expect(result.success).toBe(false);

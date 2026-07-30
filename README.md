@@ -413,9 +413,42 @@ npm run coverage
 
 ---
 
+## SonarQube Modernization
+
+Refaktoring dan modernisasi kode dilakukan untuk memenuhi aturan static analysis SonarQube standar ES2020+, menghilangkan API browser yang sudah usang (*deprecated*), serta meningkatkan aspek keandalan (*reliability*) dan keterbacaan (*readability*).
+
+### 1. Daftar Issue yang Diperbaiki
+- **`index.html`**: Penambahan tag `<title>` tunggal yang valid di dalam elemen `<head>`.
+- **`src/components/common/IntroVideo.test.jsx`**: Mengganti `parentNode.removeChild(childNode)` dengan API modern `childNode.remove()`.
+- **`src/components/sections/DigitalEnvelope.jsx` & `DigitalEnvelope.test.jsx`**: Mengeliminasi API `document.execCommand()` yang sudah deprecated dan beralih ke Clipboard API (`navigator.clipboard.writeText`) async/await modern.
+- **`src/components/sections/HeroSection.jsx` & `HeroSection.test.jsx`**: Mengganti variabel global `window` dengan standard global namespace ES2020 `globalThis`.
+- **`src/components/sections/RSVPForm.jsx`, `RSVPForm.test.jsx`, & `apiService.test.js`**: Mengganti `global` dan `window` dengan `globalThis`.
+
+### 2. Alasan Penggunaan API Modern
+- **`globalThis`**: Menyediakan cara standar dan portabel untuk mengakses objek global di berbagai lingkungan JavaScript (Browser, Node.js, Web Worker, JSDOM) tanpa terikat pada objek `window` atau `global`.
+- **`childNode.remove()`**: API standar DOM Living Standard yang lebih ringkas, aman, dan langsung menghapus elemen tanpa harus mereferensikan `parentNode`.
+- **Async Clipboard API**: Menghindari kelemahan `document.execCommand('copy')` yang sudah didepresiasi oleh konsorsium W3C dan berpotensi diblokir oleh kebijakan keamanan browser modern.
+
+### 3. Perubahan yang Dilakukan
+- Menyesuaikan tag `<title>` pada HTML utama aplikasi.
+- Memperbarui pemanggilan metode manipulasi DOM pada file unit test.
+- Mengganti seluruh pengujian mock `document.execCommand` dengan mock Clipboard API `navigator.clipboard`.
+- Memperbarui referensi objek global pada kode komponen dan pengujian menjadi `globalThis`.
+
+### 4. Kompatibilitas Browser & Testing
+- **Browser Modern**: Mendukung penuh ES2020+, modern Clipboard API, dan metode standard DOM `.remove()`.
+- **Vitest & JSDOM**: Seluruh mock API `globalThis` dan `navigator.clipboard` bekerja 100% kompatibel tanpa membutuhkan polyfill eksternal.
+
+### 5. Konfirmasi Behavior Aplikasi & Unit Test
+- **UI & Business Logic**: Tidak ada perubahan tampilan UI maupun alur logika bisnis aplikasi.
+- **Unit Test Result**: Seluruh 18 file test (56 unit test) dinyatakan **100% PASS** dengan pencakupan *Line Coverage* sebesar **92.8%**.
+
+---
+
 ## Lisensi
 
 Proyek ini bersifat pribadi. Tidak diizinkan untuk mendistribusikan atau menggunakan ulang tanpa izin eksplisit.
+
 
 
 

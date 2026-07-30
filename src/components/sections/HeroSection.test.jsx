@@ -48,7 +48,7 @@ describe("HeroSection Component", () => {
 
   it("triggers .ics file download when Apple / Device Calendar option is clicked", () => {
     const createObjectURLMock = vi.fn(() => "blob:http://localhost/mock-ics");
-    window.URL.createObjectURL = createObjectURLMock;
+    globalThis.URL.createObjectURL = createObjectURLMock;
 
     render(
       <HeroSection

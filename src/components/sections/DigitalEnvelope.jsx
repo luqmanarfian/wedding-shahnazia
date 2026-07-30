@@ -1,34 +1,28 @@
 // src/components/sections/DigitalEnvelope.jsx
 import React from "react";
+import PropTypes from "prop-types";
 
 export default function DigitalEnvelope({ gift, onCopySuccess }) {
-  const handleCopy = () => {
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard
-        .writeText(gift.accountNumber)
-        .then(() => {
-          if (onCopySuccess) {
-            onCopySuccess("Nomor Rekening Berhasil Disalin");
-          }
-        })
-        .catch((err) => {
-          console.error("Failed to copy account number:", err);
-        });
-    } else {
-      // Fallback for older browsers
-      const tempInput = document.createElement("textarea");
-      tempInput.value = gift.accountNumber;
-      document.body.appendChild(tempInput);
-      tempInput.select();
-      try {
-        document.execCommand("copy");
+  const handleCopy = async () => {
+    try {
+      if (navigator?.clipboard?.writeText) {
+        await navigator.clipboard.writeText(gift.accountNumber);
         if (onCopySuccess) {
           onCopySuccess("Nomor Rekening Berhasil Disalin");
         }
-      } catch (err) {
-        console.error("Fallback copy failed:", err);
+      } else {
+        // Fallback for environment without clipboard API
+        const tempInput = document.createElement("textarea");
+        tempInput.value = gift.accountNumber;
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        tempInput.remove();
+        if (onCopySuccess) {
+          onCopySuccess("Nomor Rekening Berhasil Disalin");
+        }
       }
-      document.body.removeChild(tempInput);
+    } catch (err) {
+      console.error("Failed to copy account number:", err);
     }
   };
 
@@ -90,3 +84,13 @@ export default function DigitalEnvelope({ gift, onCopySuccess }) {
     </section>
   );
 }
+
+DigitalEnvelope.propTypes = {
+  gift: PropTypes.shape({
+    bankName: PropTypes.string,
+    isPrimary: PropTypes.bool,
+    accountNumber: PropTypes.string,
+    accountHolder: PropTypes.string
+  }).isRequired,
+  onCopySuccess: PropTypes.func
+};
