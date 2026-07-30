@@ -58,12 +58,31 @@ export const weddingData = {
   },
   loveStory: {
     title: "Cerita Cinta Kami",
-    subtitle: "How We Met",
+    subtitle: "Our Love Journey",
+    stories: [
+      {
+        id: 1,
+        badge: "BABAK I",
+        title: "Awal Ceria",
+        description: "Berawal dari pertemuan sederhana, kami saling mengenal dan mulai berbagi banyak cerita. Tanpa disadari, kebersamaan itu tumbuh menjadi rasa nyaman yang semakin kuat dari hari ke hari."
+      },
+      {
+        id: 2,
+        badge: "BABAK II",
+        title: "Lamaran",
+        description: "Dengan niat yang tulus dan restu keluarga, kami memutuskan untuk melangkah ke tahap yang lebih serius. Momen lamaran menjadi awal dari perjalanan baru yang penuh harapan dan doa baik."
+      },
+      {
+        id: 3,
+        badge: "BABAK III",
+        title: "Pernikahan",
+        description: "Kini kami sampai pada hari yang kami nantikan, hari di mana dua hati dipersatukan dalam ikatan suci pernikahan. Semoga langkah ini menjadi awal kehidupan baru yang penuh cinta, kebahagiaan, dan keberkahan."
+      }
+    ],
     paragraphs: [
-      "Di tepi danau Moniyan, Kiyora memainkan melodi lembut yang tanpa sengaja mempertemukannya dengan Lancy. Dari pertemuan sederhana itu, keduanya mulai saling menemukan ketenangan di tengah kerasnya Land of Dawn.",
-      "Hingga di bawah cahaya bulan, Lancy berkata,",
-      "\"Di setiap perjalanan, akhirnya aku menemukan tempat untuk pulang.\"",
-      "Dan sejak saat itu, kisah mereka bukan lagi tentang pertemuan, melainkan tentang dua hati yang memilih untuk tetap bersama."
+      "Berawal dari pertemuan sederhana, kami saling mengenal dan mulai berbagi banyak cerita. Tanpa disadari, kebersamaan itu tumbuh menjadi rasa nyaman yang semakin kuat dari hari ke hari.",
+      "Dengan niat yang tulus dan restu keluarga, kami memutuskan untuk melangkah ke tahap yang lebih serius. Momen lamaran menjadi awal dari perjalanan baru yang penuh harapan dan doa baik.",
+      "Kini kami sampai pada hari yang kami nantikan, hari di mana dua hati dipersatukan dalam ikatan suci pernikahan. Semoga langkah ini menjadi awal kehidupan baru yang penuh cinta, kebahagiaan, dan keberkahan."
     ]
   },
   gallery: {

@@ -316,8 +316,40 @@ Untuk memastikannya bebas dari kerentanan (*vulnerabilities*) yang dideteksi ole
 
 ---
 
+## Pembaruan Section Love Story (Jawa Modern & Borobudur Luxury)
+
+Perbaikan section **Love Story** dilakukan untuk memberikan pengalaman visual yang lebih premium, elegan, mudah dibaca, dan selaras dengan identitas visual website yang terinspirasi oleh **Kemewahan Jawa Modern dan Candi Borobudur**.
+
+### 1. Tujuan Perubahan
+- Mengganti teks cerita lama dengan 3 alur cerita baru: **Awal Ceria**, **Lamaran**, dan **Pernikahan**.
+- Meningkatkan hierarki tipografi dan keterbacaan (*readability*) pada perangkat seluler.
+- Memberikan aksen dekoratif subtle khas Jawa Modern & Borobudur tanpa mengganggu kenyamanan membaca.
+
+### 2. File yang Diubah
+- [`src/constants/weddingData.js`](./src/constants/weddingData.js): Memperbarui struktur data `loveStory` dengan 3 babak cerita baru (`stories`) dan menyertakan fallback `paragraphs`.
+- [`src/components/sections/LoveStory.jsx`](./src/components/sections/LoveStory.jsx): Redesign penuh komponen visual Love Story dengan whitespace lega, *badge* babak elegan, divider visual Borobudur, dan motif geometris stupa low-opacity (`opacity-[0.06]`).
+- [`src/components/sections/LoveStory.test.jsx`](./src/components/sections/LoveStory.test.jsx): Memperbarui pengujian otomatis unit test untuk memverifikasi rendering judul babak, deskripsi cerita, serta mekanisme fallback.
+- [`README.md`](./README.md): Menambahkan dokumentasi pembaruan dan alasan desain/teknis.
+
+### 3. Alasan Desain
+- **Jawa Modern & Borobudur Heritage**: Motif geometris lattice stupa Borobudur berskala halus dengan opacity 6% memberikan identitas budaya Jawa yang autentik namun tetap minimalis dan eksklusif.
+- **Hierarki & Whitespace**: Setiap babak disajikan dalam kartu terpisah dengan *spacing* lega, penanda babak (`BABAK I`, `BABAK II`, `BABAK III`), serta judul beraksen *Cormorant Garamond* italic font-heading.
+- **Aksen Soft Gold & Floral Subtle**: Garis batas tipis Soft Gold (`#B99A63`) dan ornamen bunga melati/flora Jawa (`❦`) di sudut kartu mempertegas kesan *luxury timeless*.
+
+### 4. Alasan Implementasi
+- **Zero New Dependencies**: Implementasi memanfaatkan Tailwind CSS v4, SVG murni, dan font Google yang sudah tersedia pada proyek.
+- **Forward & Backward Compatibility**: Komponen `LoveStory` mendukung array objek `stories` baru maupun array `paragraphs` lama jika ada integrasi eksternal.
+- **High Performance**: SVG pattern yang dirender ringan dan ramah pada performa browser seluler.
+
+### 5. Dampak terhadap Proyek
+- Menjadikan section Love Story sebagai salah satu *highlight visual* utama pada undangan.
+- Seluruh 42 unit test pada Vitest dinyatakan **100% Lulus (Pass)** tanpa regresi maupun *breaking changes*.
+
+---
+
 ## Lisensi
 
 Proyek ini bersifat pribadi. Tidak diizinkan untuk mendistribusikan atau menggunakan ulang tanpa izin eksplisit.
+
 
 
