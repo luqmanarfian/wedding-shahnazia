@@ -47,7 +47,8 @@ pipeline {
                         ${scannerHome}/bin/sonar-scanner \
                         -Dsonar.projectKey=${APP_NAME} \
                         -Dsonar.host.url=$SONAR_HOST_URL \
-                        -Dsonar.token=$SONAR_AUTH_TOKEN
+                        -Dsonar.token=$SONAR_AUTH_TOKEN \
+                        -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
                         """
                     }
                 }
