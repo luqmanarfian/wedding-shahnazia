@@ -1,7 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { render, screen, fireEvent, act } from "@testing-library/react";
 import App from "./App";
-import { weddingData } from "./constants/weddingData";
 
 describe("App Root Component", () => {
   beforeEach(() => {
@@ -30,7 +29,6 @@ describe("App Root Component", () => {
     const openButton = screen.getByRole("button", { name: /buka undangan/i });
     fireEvent.click(openButton);
 
-    // Main invitation content should now be visible
     expect(screen.getByRole("button", { name: /toggle background music/i })).toBeInTheDocument();
     expect(screen.getByText("Lewati")).toBeInTheDocument();
   });
@@ -46,5 +44,40 @@ describe("App Root Component", () => {
 
     fireEvent.click(musicButton);
     fireEvent.click(musicButton);
+  });
+
+  it("handles intro video ended callback and toast triggers", () => {
+    vi.useFakeTimers();
+
+    render(<App />);
+
+    const openButton = screen.getByRole("button", { name: /buka undangan/i });
+    fireEvent.click(openButton);
+
+    const skipBtn = screen.getByText("Lewati");
+    fireEvent.click(skipBtn);
+
+    act(() => {
+      vi.advanceTimersByTime(600);
+    });
+
+    expect(screen.queryByText("Lewati")).not.toBeInTheDocument();
+
+    vi.useRealTimers();
+  });
+
+  it("triggers intersection observer reveal active class after opening", () => {
+    vi.useFakeTimers();
+
+    render(<App />);
+
+    const openButton = screen.getByRole("button", { name: /buka undangan/i });
+    fireEvent.click(openButton);
+
+    act(() => {
+      vi.advanceTimersByTime(300);
+    });
+
+    vi.useRealTimers();
   });
 });

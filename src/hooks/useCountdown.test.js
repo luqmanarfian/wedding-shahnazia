@@ -54,4 +54,17 @@ describe("useCountdown", () => {
 
     expect(result.current.seconds).toBe("03");
   });
+
+  it("formats numbers without leading zero when value is >= 10", () => {
+    const now = new Date("2026-09-01T00:00:00Z").getTime();
+    vi.setSystemTime(now);
+
+    const targetDate = "2026-09-16T12:30:45Z";
+    const { result } = renderHook(() => useCountdown(targetDate));
+
+    expect(result.current.days).toBe("15");
+    expect(result.current.hours).toBe("12");
+    expect(result.current.minutes).toBe("30");
+    expect(result.current.seconds).toBe("45");
+  });
 });

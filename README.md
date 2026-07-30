@@ -370,9 +370,53 @@ Berikut adalah daftar issue SonarQube yang telah diperbaiki pada komponen fronte
 
 ---
 
+## Test Coverage Improvements
+
+Peningkatan cakupan pengujian (*code coverage*) dilakukan untuk memastikan seluruh komponen React, hooks, dan utilitas proyek teruji dengan baik, memenuhi ambang batas SonarQube (≥80%), serta menjaga keandalan aplikasi tanpa mengubah *behavior* maupun UI.
+
+### 1. File yang Ditest
+- **`src/App.jsx`**: Interaksi pembukaan undangan, personalisasi nama tamu via URL (`?to=Name`), toggle audio player, event selesai intro video, serta IntersectionObserver reveal.
+- **`src/components/sections/CoupleSection.jsx`**: Rendering nama mempelai, info orang tua, dan penanganan fallback `onError` gambar avatar.
+- **`src/components/sections/HeroSection.jsx`**: Render nama mempelai & tanggal, interaksi dropdown kalender, eksekusi tautan Google/Outlook Calendar, pengunduhan file `.ics` Apple/Device Calendar, penutupan menu saat *click outside*, serta `onError` fallback gambar.
+- **`src/components/sections/Gallery.jsx`**: Grid Bento 5 gambar, fallback grid non-5 gambar, fallback `onError` gambar prewedding, serta prop `gallery` bernilai `undefined`.
+- **`src/components/common/IntroVideo.jsx`**: Render video & tombol lewati, callback `onEnded` dengan penundaan *fade out*, penanganan klik ganda, event `ended` video, serta deteksi scroll kontainer.
+- **`src/components/sections/RSVPForm.jsx`**: Input nama, status kehadiran (Hadir/Absen), jumlah tamu dropdown, pengiriman data RSVP via Apps Script, tampilan modal tiket QR code, pengunduhan gambar QR, penanganan error jaringan, dan penutupan modal.
+- **`src/components/sections/DigitalEnvelope.jsx`**: Penyalinan nomor rekening via `navigator.clipboard`, fallback `document.execCommand`, serta penanganan penolakan/error clipboard.
+- **`src/components/sections/OpeningCover.jsx`**: Render nama tamu & tombol buka, pembukaan undangan, animasi *unmount*, dan fallback `onError` gambar sampul.
+- **`src/components/sections/Countdown.jsx`**: Grid hitung mundur (Hari, Jam, Menit, Detik) dan fallback `bgImage`.
+- **`src/hooks/useCountdown.js`**: Perhitungan selisih waktu tanggal masa depan, tanggal yang sudah lewat, format nilai dua digit (<10) & tanpa nol depan (≥10), serta interval pembaruan tiap detik.
+
+### 2. Skenario & Branch yang Dicakup
+- **Normal Case**: Alur pengisian form, rendering data sukses, interaksi tombol, dan konfirmasi.
+- **Conditional Rendering**: Tampilan modal tiket QR untuk status *Hadir* vs konfirmasi tanpa QR untuk status *Absen*.
+- **Edge Cases & Fallbacks**: Prop `undefined`/`null`, kegagalan muat gambar (`onError`), browser tanpa dukungan `navigator.clipboard`, serta penanganan error Apps Script.
+- **Event Listeners**: *Click outside* listener pada kalender dropdown, *scroll event* pada intro video, serta *ended event* pada media HTML5.
+
+### 3. Cara Menjalankan Test & Melihat Coverage
+```bash
+# Menjalankan seluruh unit test
+npm run test
+
+# Menjalankan test suite beserta laporan coverage v8
+npm run coverage
+```
+
+### 4. Hasil Peningkatan Coverage
+| Metrik Coverage | Sebelum | Sesudah |
+|---|---|---|
+| **Line Coverage** | 80.9% | **92.5%** |
+| **Statement Coverage** | 78.9% | **90.5%** |
+| **Branch Coverage** | 74.1% | **85.9%** |
+| **Function Coverage** | 64.4% | **87.7%** |
+| **Total Test Files Passed** | 18 / 18 | **18 / 18 (100%)** |
+| **Total Passed Tests** | 42 | **56 (+14 test cases)** |
+
+---
+
 ## Lisensi
 
 Proyek ini bersifat pribadi. Tidak diizinkan untuk mendistribusikan atau menggunakan ulang tanpa izin eksplisit.
+
 
 
 

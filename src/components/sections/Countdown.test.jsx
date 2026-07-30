@@ -16,4 +16,11 @@ describe("Countdown Component", () => {
     expect(screen.getByText("Menit")).toBeInTheDocument();
     expect(screen.getByText("Detik")).toBeInTheDocument();
   });
+
+  it("renders with fallback bgImage when bgImage prop is omitted", () => {
+    render(<Countdown targetDate="2026-09-05T11:00:00" />);
+
+    const bgImg = screen.getByAltText("Couple Background");
+    expect(bgImg).toBeInTheDocument();
+  });
 });

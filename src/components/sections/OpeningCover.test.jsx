@@ -40,4 +40,13 @@ describe("OpeningCover Component", () => {
 
     expect(container.firstChild).toBeNull();
   });
+
+  it("handles cover image onError fallback", () => {
+    render(<OpeningCover guestName="Tamu Kehormatan" isOpen={false} onOpen={vi.fn()} />);
+
+    const coverImg = screen.getByAltText(/damarjati & shahnazia/i);
+    fireEvent.error(coverImg);
+
+    expect(coverImg.src).toBeTruthy();
+  });
 });

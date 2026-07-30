@@ -37,6 +37,10 @@ describe("RSVPForm Component", () => {
     fireEvent.change(screen.getByPlaceholderText(/budi susanto/i), { target: { value: "Siti Rahma" } });
     fireEvent.change(screen.getByPlaceholderText(/kirim doa restu/i), { target: { value: "InsyaAllah Hadir!" } });
 
+    // Change count to 2
+    const selectEl = screen.getByRole("combobox");
+    fireEvent.change(selectEl, { target: { value: "2" } });
+
     fireEvent.click(screen.getByRole("button", { name: /kirim konfirmasi/i }));
 
     await waitFor(() => {
@@ -45,15 +49,20 @@ describe("RSVPForm Component", () => {
           type: "rsvp",
           name: "Siti Rahma",
           status: "Hadir",
-          count: "1",
+          count: "2",
           message: "InsyaAllah Hadir!",
           qrCodeId: expect.stringMatching(/^WEDDING-\d+-\d{4}$/)
         })
       );
     });
 
-    expect(screen.getByText(/tiketing|tiket kehadiran/i)).toBeInTheDocument();
+    expect(screen.getByText(/tiket kehadiran/i)).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /unduh gambar qr/i })).toBeInTheDocument();
+
+    // Close modal
+    const closeBtn = screen.getByRole("button", { name: /close ticket modal/i });
+    fireEvent.click(closeBtn);
+    expect(screen.queryByText(/tiket kehadiran/i)).not.toBeInTheDocument();
   });
 
   it("submits RSVP for Absen status with count 0 and qrCodeId none", async () => {
@@ -84,18 +93,19 @@ describe("RSVPForm Component", () => {
         })
       );
     });
+
+    // Close Absen modal
+    const closeBtn = screen.getByRole("button", { name: /tutup/i });
+    fireEvent.click(closeBtn);
   });
 
-  it("handles QR Code download when button is clicked in modal", async () => {
+  it("handles submission failure error and QR Code download error gracefully", async () => {
     vi.spyOn(apiService, "submitToAppsScript").mockResolvedValue({
-      success: true,
-      message: "Data RSVP berhasil disimpan."
+      success: false,
+      message: "Gagal menghubungkan ke server."
     });
 
-    const mockBlob = new Blob(["mock-png"], { type: "image/png" });
-    global.fetch = vi.fn().mockResolvedValue({
-      blob: () => Promise.resolve(mockBlob)
-    });
+    global.fetch = vi.fn().mockRejectedValue(new Error("Network Error"));
 
     render(<RSVPForm />);
 
@@ -104,7 +114,7 @@ describe("RSVPForm Component", () => {
     fireEvent.click(screen.getByRole("button", { name: /kirim konfirmasi/i }));
 
     await waitFor(() => {
-      expect(screen.getByRole("button", { name: /unduh gambar qr/i })).toBeInTheDocument();
+      expect(screen.getByText(/gagal menghubungkan ke server/i)).toBeInTheDocument();
     });
 
     const downloadBtn = screen.getByRole("button", { name: /unduh gambar qr/i });
