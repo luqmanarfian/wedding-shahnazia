@@ -347,9 +347,33 @@ Perbaikan section **Love Story** dilakukan untuk memberikan pengalaman visual ya
 
 ---
 
+## SonarQube Fixes
+
+Berikut adalah daftar issue SonarQube yang telah diperbaiki pada komponen frontend:
+
+### 1. Daftar Issue yang Diperbaiki
+- **`src/components/sections/CoupleSection.jsx`**:
+  - Fix missing props validation: `'couple.groom.name'` and `'couple.bride.name'`.
+- **`src/components/sections/LoveStory.jsx`**:
+  - Fix missing props validation: `'loveStory.stories'` and `'loveStory.paragraphs'`.
+  - Extract nested ternary operation into independent statement.
+
+### 2. Alasan Perubahan
+- Menambahkan **PropTypes validation** menggunakan `PropTypes.shape` dan `PropTypes.arrayOf` untuk memastikan tipe data props terverifikasi saat runtime, meminimalkan potensi runtime error (*undefined/null dereference*), serta memenuhi standar SonarQube & React Best Practices.
+- Mengeliminasi **nested ternary operation** pada pengolahan fallback cerita di `LoveStory.jsx` dengan menggantinya menggunakan helper function dan ekspresi kondisi `if/else` terpisah yang eksplisit.
+
+### 3. Jaminan Behavior Aplikasi
+- Perubahan dilakukan murni pada aspek tipe validasi dan refaktoring sintaksis internal tanpa mengubah logika bisnis, alur eksekusi, maupun tampilan UI aplikasi sama sekali.
+
+### 4. Peningkatan Maintainability & Readability
+- Kode komponen menjadi lebih deklaratif, terdokumentasi tipe props-nya secara gamblang, dan mudah dibaca oleh developer lain maupun analisis SonarQube static scanner.
+
+---
+
 ## Lisensi
 
 Proyek ini bersifat pribadi. Tidak diizinkan untuk mendistribusikan atau menggunakan ulang tanpa izin eksplisit.
+
 
 
 

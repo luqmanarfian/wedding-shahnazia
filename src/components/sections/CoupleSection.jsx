@@ -1,5 +1,5 @@
 // src/components/sections/CoupleSection.jsx
-import React from "react";
+import PropTypes from "prop-types";
 import bgCardPengantin from "../../assets/images/bg-card-pengantin.webp";
 import placeholderAvatar from "../../assets/images/placeholder-avatar.svg";
 
@@ -93,3 +93,21 @@ export default function CoupleSection({ couple }) {
     </section>
   );
 }
+
+const personShape = PropTypes.shape({
+  name: PropTypes.string,
+  shortName: PropTypes.string,
+  parentInfo: PropTypes.string,
+  parents: PropTypes.string,
+  photo: PropTypes.string
+});
+
+CoupleSection.propTypes = {
+  couple: PropTypes.shape({
+    groom: personShape,
+    bride: personShape,
+    couple: PropTypes.shape({
+      photo: PropTypes.string
+    })
+  }).isRequired
+};

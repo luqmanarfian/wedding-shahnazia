@@ -1,17 +1,37 @@
 // src/components/sections/LoveStory.jsx
-import React from "react";
+import PropTypes from "prop-types";
 import bgCardPortrait from "../../assets/images/bg-card-potrait.webp";
+
+function getFallbackTitle(index) {
+  if (index === 0) {
+    return "Awal Ceria";
+  }
+  if (index === 1) {
+    return "Lamaran";
+  }
+  return "Pernikahan";
+}
+
+function getRomanBadge(index) {
+  const romanNumerals = ["I", "II", "III", "IV", "V"];
+  return romanNumerals[index] || index + 1;
+}
 
 export default function LoveStory({ loveStory }) {
   const { title, subtitle, stories, paragraphs } = loveStory;
 
-  // Standardize story items list from stories prop or fallback to paragraphs array
-  const storyList = stories || (paragraphs ? paragraphs.map((para, idx) => ({
-    id: idx + 1,
-    badge: `BABAK ${["I", "II", "III", "IV", "V"][idx] || idx + 1}`,
-    title: idx === 0 ? "Awal Ceria" : idx === 1 ? "Lamaran" : "Pernikahan",
-    description: para
-  })) : []);
+  // Standardize story items list from stories prop or fallback to paragraphs array without nested ternaries
+  let storyList = [];
+  if (stories && Array.isArray(stories) && stories.length > 0) {
+    storyList = stories;
+  } else if (paragraphs && Array.isArray(paragraphs)) {
+    storyList = paragraphs.map((para, idx) => ({
+      id: idx + 1,
+      badge: `BABAK ${getRomanBadge(idx)}`,
+      title: getFallbackTitle(idx),
+      description: para
+    }));
+  }
 
   return (
     <section id="story" className="reveal max-w-md mx-auto px-1 sm:px-0">
@@ -112,4 +132,19 @@ export default function LoveStory({ loveStory }) {
   );
 }
 
-
+LoveStory.propTypes = {
+  loveStory: PropTypes.shape({
+    title: PropTypes.string,
+    subtitle: PropTypes.string,
+    stories: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+        badge: PropTypes.string,
+        title: PropTypes.string,
+        description: PropTypes.string,
+        content: PropTypes.string
+      })
+    ),
+    paragraphs: PropTypes.arrayOf(PropTypes.string)
+  }).isRequired
+};
