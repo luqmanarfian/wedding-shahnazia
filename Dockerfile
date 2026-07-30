@@ -36,6 +36,8 @@ USER root
 RUN apk update && apk upgrade --no-cache \
     && apk del --no-cache \
         curl \
+        expat \
+        libexpat \
         libxml2 \
         libxslt \
     && rm -rf /var/cache/apk/*

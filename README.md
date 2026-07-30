@@ -303,7 +303,7 @@ Untuk memastikannya bebas dari kerentanan (*vulnerabilities*) yang dideteksi ole
 
 2. **Mitigasi Kerentanan OS Packages**:
    - Eksekusi `apk update && apk upgrade --no-cache` pada stage build maupun stage produksi untuk secara otomatis memperbarui pustaka sistem (*OS packages*) ke versi *patch* keamanan terbaru.
-   - Menghapus pustaka berlebih yang tidak dibutuhkan pada runtime (`curl`, `libxml2`, `libxslt`) guna memperkecil *attack surface* dan menjaga ukuran *image* tetap ringan.
+   - Menghapus pustaka berlebih yang tidak dibutuhkan pada runtime (`curl`, `expat`, `libexpat`, `libxml2`, `libxslt`) guna memperkecil *attack surface* dan menjaga ukuran *image* tetap ringan.
 
 3. **Prinsip Least Privilege**:
    - Menjalankan kontainer pada runtime Nginx menggunakan akun non-root (`USER nginx`) demi memenuhi standar keamanan industri dan kepatuhan Kubernetes.
