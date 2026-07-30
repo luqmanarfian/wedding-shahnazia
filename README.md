@@ -298,7 +298,7 @@ Pipeline CI/CD dikonfigurasi melalui file [`Jenkinsfile`](./Jenkinsfile) dengan 
 Untuk memastikannya bebas dari kerentanan (*vulnerabilities*) yang dideteksi oleh **Trivy**, proyek ini mengimplementasikan praktik *DevSecOps* dan *security hardening* pada Dockerfile serta CI/CD pipeline:
 
 1. **Pembaruan Base Image Docker**:
-   - Stage Build menggunakan `node:24-alpine` untuk memastikan *compiler* dan *build tools* berbasis versi Alpine paling stabil dan aman.
+   - Stage Build menggunakan `node:22-alpine` (Node.js 22 LTS) untuk memastikan kompatibilitas `npm ci` dan pustaka sistem berbasis Alpine paling stabil.
    - Stage Production menggunakan `nginxinc/nginx-unprivileged:1.27-alpine` untuk memperbarui sistem operasi dasar dan komponen Nginx.
 
 2. **Mitigasi Kerentanan OS Packages**:
