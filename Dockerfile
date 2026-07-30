@@ -11,8 +11,8 @@ RUN apk update && apk upgrade --no-cache
 # Salin package.json & package-lock.json terlebih dahulu untuk memanfaatkan cache layer Docker
 COPY package.json package-lock.json ./
 
-# Install dependensi secara bersih (clean install)
-RUN npm ci
+# Install dependensi (dengan fallback ke npm install jika terdapat perbedaan platform lockfile Linux/Windows)
+RUN npm ci || npm install
 
 # Salin hanya asset dan konfigurasi yang dibutuhkan untuk proses build
 COPY src ./src
