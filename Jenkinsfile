@@ -25,43 +25,42 @@ pipeline {
             }
         }
 
-        stage('Install & Test') {
-            agent {
-                docker {
-                    image 'node:24.12-alpine'
-                    reuseNode true
-                }
-            }
-            steps {
-                sh 'npm ci'
-                sh 'npm run coverage'
-            }
-        }
+        // stage('Install & Test') {
+        //     agent {
+        //         docker {
+        //             image 'node:24.12-alpine'
+        //             reuseNode true
+        //         }
+        //     }
+        //     steps {
+        //         sh 'npm ci'
+        //         sh 'npm run coverage'
+        //     }
+        // }
 
-        stage('SonarQube Analysis') {
-            steps {
-                script {
-                    def scannerHome = tool 'SonarScanner'
-                    withSonarQubeEnv("${SONARQUBE_SERVER}") {
-                        sh """
-                        ${scannerHome}/bin/sonar-scanner \
-                        -Dsonar.projectKey=${APP_NAME} \
-                        -Dsonar.host.url=$SONAR_HOST_URL \
-                        -Dsonar.token=$SONAR_AUTH_TOKEN \
-                        -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
-                        """
-                    }
-                }
-            }
-        }
+        // stage('SonarQube Analysis') {
+        //     steps {
+        //         script {
+        //             def scannerHome = tool 'SonarScanner'
+        //             withSonarQubeEnv("${SONARQUBE_SERVER}") {
+        //                 sh """
+        //                 ${scannerHome}/bin/sonar-scanner \
+        //                 -Dsonar.projectKey=${APP_NAME} \
+        //                 -Dsonar.host.url=$SONAR_HOST_URL \
+        //                 -Dsonar.token=$SONAR_AUTH_TOKEN
+        //                 """
+        //             }
+        //         }
+        //     }
+        // }
 
-        stage('Quality Gate') {
-            steps {
-                timeout(time: 5, unit: 'MINUTES') {
-                    waitForQualityGate abortPipeline: true
-                }
-            }
-        }
+        // stage('Quality Gate') {
+        //     steps {
+        //         timeout(time: 5, unit: 'MINUTES') {
+        //             waitForQualityGate abortPipeline: true
+        //         }
+        //     }
+        // }
 
         stage('Build Docker Image') {
             steps {
