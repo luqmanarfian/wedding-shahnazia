@@ -39,14 +39,14 @@ export const weddingData = {
   events: {
     akad: {
       title: "Akad Nikah",
-      dayDate: "Jumat, 11 September 2026",
+      dayDate: "Sabtu, 5 September 2026",
       time: "11:00 WIB",
       venue: "Ballroom Royal Hotel Bogor",
       address: "Jl. Pajajaran No.12, Bogor, Jawa Barat"
     },
     resepsi: {
       title: "Resepsi",
-      dayDate: "Jumat, 11 September 2026",
+      dayDate: "Sabtu, 5 September 2026",
       time: "11:00 WIB - Selesai",
       venue: "Ballroom Royal Hotel Bogor",
       address: "Jl. Pajajaran No.12, Bogor, Jawa Barat"
