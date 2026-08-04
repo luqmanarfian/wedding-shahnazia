@@ -29,7 +29,7 @@ export default function Gallery({ gallery }) {
         </h2>
         <div className="flex items-center justify-center gap-3 pt-2">
           <span className="h-[1px] w-10 bg-antGold/40"></span>
-          <span className="text-antGold text-sm">❦</span>
+          <span className="text-antGold text-sm animate-float-gentle inline-block select-none">❦</span>
           <span className="h-[1px] w-10 bg-antGold/40"></span>
         </div>
       </div>
@@ -40,11 +40,12 @@ export default function Gallery({ gallery }) {
           {images.map((img, idx) => {
             const cardStyle = getBentoSpan(idx, images.length);
             const objectPos = img.position || (idx === 0 ? "object-top" : "object-center");
+            const delayClass = `delay-${(idx % 4) * 100 + 100}`;
 
             return (
               <div
                 key={img.id || `gallery-item-${idx}`}
-                className={`group relative overflow-hidden bg-softCream transition-all duration-500 hover:shadow-2xl ${cardStyle}`}
+                className={`reveal reveal-zoom-in ${delayClass} group relative overflow-hidden bg-softCream transition-all duration-500 hover:shadow-2xl rounded-xl card-hover-effect ${cardStyle}`}
               >
                 {/* Image Element */}
                 <img

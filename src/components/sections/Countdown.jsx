@@ -27,7 +27,7 @@ export default function Countdown({ targetDate, bgImage }) {
           {/* Vintage Ornaments */}
           <div className="flex items-center justify-center gap-3 mb-3">
             <span className="h-[1px] w-8 bg-antGold/50"></span>
-            <span className="text-antGold text-sm">❦</span>
+            <span className="text-antGold text-sm animate-float-gentle inline-block select-none">❦</span>
             <span className="h-[1px] w-8 bg-antGold/50"></span>
           </div>
 
@@ -38,7 +38,7 @@ export default function Countdown({ targetDate, bgImage }) {
           {/* Glassmorphic Timer Grid */}
           <div className="grid grid-cols-4 gap-2 sm:gap-3">
             {/* Days Box */}
-            <div className="bg-espresso/60 backdrop-blur-md border border-antGold/40 p-2.5 sm:p-3.5 rounded-xl flex flex-col items-center justify-center shadow-lg transition-all duration-300 hover:border-antGold">
+            <div className="bg-espresso/60 backdrop-blur-md border border-antGold/40 p-2.5 sm:p-3.5 rounded-xl flex flex-col items-center justify-center shadow-lg transition-all duration-300 hover:border-antGold hover:scale-105">
               <span className="block font-heading text-2xl sm:text-4xl font-bold text-antGold leading-tight drop-shadow-md">
                 {days}
               </span>
@@ -48,7 +48,7 @@ export default function Countdown({ targetDate, bgImage }) {
             </div>
 
             {/* Hours Box */}
-            <div className="bg-espresso/60 backdrop-blur-md border border-antGold/40 p-2.5 sm:p-3.5 rounded-xl flex flex-col items-center justify-center shadow-lg transition-all duration-300 hover:border-antGold">
+            <div className="bg-espresso/60 backdrop-blur-md border border-antGold/40 p-2.5 sm:p-3.5 rounded-xl flex flex-col items-center justify-center shadow-lg transition-all duration-300 hover:border-antGold hover:scale-105">
               <span className="block font-heading text-2xl sm:text-4xl font-bold text-antGold leading-tight drop-shadow-md">
                 {hours}
               </span>
@@ -58,7 +58,7 @@ export default function Countdown({ targetDate, bgImage }) {
             </div>
 
             {/* Minutes Box */}
-            <div className="bg-espresso/60 backdrop-blur-md border border-antGold/40 p-2.5 sm:p-3.5 rounded-xl flex flex-col items-center justify-center shadow-lg transition-all duration-300 hover:border-antGold">
+            <div className="bg-espresso/60 backdrop-blur-md border border-antGold/40 p-2.5 sm:p-3.5 rounded-xl flex flex-col items-center justify-center shadow-lg transition-all duration-300 hover:border-antGold hover:scale-105">
               <span className="block font-heading text-2xl sm:text-4xl font-bold text-antGold leading-tight drop-shadow-md">
                 {minutes}
               </span>
@@ -68,7 +68,7 @@ export default function Countdown({ targetDate, bgImage }) {
             </div>
 
             {/* Seconds Box */}
-            <div className="bg-espresso/60 backdrop-blur-md border border-antGold/40 p-2.5 sm:p-3.5 rounded-xl flex flex-col items-center justify-center shadow-lg transition-all duration-300 hover:border-antGold">
+            <div className="bg-espresso/60 backdrop-blur-md border border-antGold/40 p-2.5 sm:p-3.5 rounded-xl flex flex-col items-center justify-center shadow-lg transition-all duration-300 hover:border-antGold hover:scale-105">
               <span className="block font-heading text-2xl sm:text-4xl font-bold text-antGold leading-tight drop-shadow-md">
                 {seconds}
               </span>

@@ -80,4 +80,16 @@ describe("App Root Component", () => {
 
     vi.useRealTimers();
   });
+
+  it("populates RSVP full name field automatically when URL parameter ?to=Lancy is present", () => {
+    delete window.location;
+    window.location = new URL("http://localhost/?to=Lancy");
+
+    render(<App />);
+
+    const openButton = screen.getByRole("button", { name: /buka undangan/i });
+    fireEvent.click(openButton);
+
+    expect(screen.getAllByDisplayValue("Lancy").length).toBeGreaterThanOrEqual(1);
+  });
 });

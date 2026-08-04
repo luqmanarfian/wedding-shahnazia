@@ -9,8 +9,8 @@ describe("CoupleSection Component", () => {
 
     expect(screen.getByText(weddingData.couple.groom.name)).toBeInTheDocument();
     expect(screen.getByText(weddingData.couple.bride.name)).toBeInTheDocument();
-    expect(screen.getByText(/putra terkasih dari/i)).toBeInTheDocument();
-    expect(screen.getByText(/putri terkasih dari/i)).toBeInTheDocument();
+    expect(screen.getByText(/putra dari/i)).toBeInTheDocument();
+    expect(screen.getByText(/putri dari/i)).toBeInTheDocument();
   });
 
   it("handles image error fallbacks for groom and bride photos", () => {

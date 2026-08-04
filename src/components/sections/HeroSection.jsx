@@ -122,7 +122,7 @@ export default function HeroSection({ couple, date, heroBgVideo }) {
       <div className="absolute inset-0 bg-espresso/35 backdrop-blur-[1px] z-0 pointer-events-none"></div>
 
       {/* Luxury-Organic Hero Card with bg-card-potrait.webp */}
-      <div className="w-full max-w-md mx-auto relative z-10 shadow-2xl my-auto text-center border-2 border-antGold/40 rounded-2xl overflow-hidden p-6 sm:p-8 vintage-border-thin">
+      <div className="w-full max-w-md mx-auto relative z-10 shadow-2xl my-auto text-center border-2 border-antGold/40 rounded-2xl overflow-hidden p-6 sm:p-8 vintage-border-thin card-hover-effect">
         {/* Layer 1: Background Image bg-card-potrait.webp */}
         <img
           src={bgCardPortrait}
@@ -136,7 +136,7 @@ export default function HeroSection({ couple, date, heroBgVideo }) {
         {/* Layer 3: Content Layer */}
         <div className="relative z-10">
           {/* Arch Frame Photo */}
-          <div className="w-52 h-72 sm:w-60 sm:h-84 mx-auto arch-frame mb-5 sm:mb-6 bg-softCream shadow-inner border-2 border-antGold/60">
+          <div className="w-52 h-72 sm:w-60 sm:h-84 mx-auto arch-frame mb-5 sm:mb-6 bg-softCream shadow-inner border-2 border-antGold/60 transition-transform duration-500 hover:scale-[1.02]">
             <img
               src={photoUrl}
               alt={`${groomName} & ${brideName}`}
@@ -158,7 +158,7 @@ export default function HeroSection({ couple, date, heroBgVideo }) {
           {/* Leaf Divider Ornament */}
           <div className="flex items-center justify-center gap-4 my-4">
             <span className="h-[1px] w-12 bg-antGold/50"></span>
-            <span className="text-antGold text-lg">❦</span>
+            <span className="text-antGold text-lg animate-float-gentle inline-block select-none">❦</span>
             <span className="h-[1px] w-12 bg-antGold/50"></span>
           </div>
 

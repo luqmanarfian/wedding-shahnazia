@@ -17,13 +17,13 @@ export default function EventDetails({ events }) {
         </h2>
         <div className="flex items-center justify-center gap-3 mt-3">
           <span className="h-[1px] w-10 bg-antGold/50"></span>
-          <span className="text-antGold text-sm">❦</span>
+          <span className="text-antGold text-sm animate-float-gentle inline-block select-none">❦</span>
           <span className="h-[1px] w-10 bg-antGold/50"></span>
         </div>
       </div>
 
       {/* 1. AKAD NIKAH CARD */}
-      <div className="relative rounded-2xl overflow-hidden border-2 border-antGold/40 shadow-xl text-center p-6 sm:p-8 text-espresso vintage-border-thin">
+      <div className="reveal reveal-slide-left delay-100 relative rounded-2xl overflow-hidden border-2 border-antGold/40 shadow-xl text-center p-6 sm:p-8 text-espresso vintage-border-thin card-hover-effect">
         {/* Layer 1: Crisp Background Image bg-card-square.webp */}
         <img
           src={bgCardSquare}
@@ -53,7 +53,7 @@ export default function EventDetails({ events }) {
           {/* Decorative Separator */}
           <div className="flex items-center justify-center gap-3 mb-5">
             <span className="h-[1px] w-12 bg-antGold/50"></span>
-            <span className="text-antGold text-xs">❦</span>
+            <span className="text-antGold text-xs animate-float-gentle inline-block select-none">❦</span>
             <span className="h-[1px] w-12 bg-antGold/50"></span>
           </div>
 
@@ -84,7 +84,7 @@ export default function EventDetails({ events }) {
       </div>
 
       {/* 2. RESEPSI CARD */}
-      <div className="relative rounded-2xl overflow-hidden border-2 border-antGold/40 shadow-xl text-center p-6 sm:p-8 text-espresso vintage-border-thin">
+      <div className="reveal reveal-slide-right delay-200 relative rounded-2xl overflow-hidden border-2 border-antGold/40 shadow-xl text-center p-6 sm:p-8 text-espresso vintage-border-thin card-hover-effect">
         {/* Layer 1: Crisp Background Image bg-card-square.webp */}
         <img
           src={bgCardSquare}

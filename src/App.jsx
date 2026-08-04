@@ -15,6 +15,7 @@ import DigitalEnvelope from "./components/sections/DigitalEnvelope";
 import GuestWishes from "./components/sections/GuestWishes";
 import MusicPlayer from "./components/common/MusicPlayer";
 import IntroVideo from "./components/common/IntroVideo";
+import FloatingDecorations from "./components/common/FloatingDecorations";
 import Footer from "./components/sections/Footer";
 
 export default function App() {
@@ -217,13 +218,19 @@ export default function App() {
 
           {/* Screen 2: Main scrollable content (Only renders/displays if opened or transitions out) */}
           {isOpen && (
-            <div
-              className="min-h-screen relative bg-cover bg-repeat bg-center"
-              style={{ backgroundImage: `url('${weddingData.assets.mainContentBg}')` }}
-            >
-              {/* Warm Sepia Backdrop Overlay */}
-              <div className="absolute inset-0 bg-ivory/85 mix-blend-color-burn pointer-events-none"></div>
-              <div className="absolute inset-0 bg-[#f4ede3e6] pointer-events-none"></div>
+            <div className="relative min-h-screen">
+              {/* Floating Ambient Particle Animation (Petals & Sparkles) */}
+              <FloatingDecorations />
+
+              {/* Sticky Crisp Background Artwork Layer (bg-potrait.webp) */}
+              <div
+                className="sticky top-0 left-0 w-full h-screen bg-cover bg-center -mb-[100vh] pointer-events-none z-0"
+                style={{ backgroundImage: `url('${weddingData.assets.mainContentBg}')` }}
+              >
+                {/* Subtle vignette & soft warm tint overlay to keep portrait art vibrant & crisp */}
+                <div className="absolute inset-0 bg-gradient-to-b from-espresso/35 via-transparent to-espresso/50 pointer-events-none"></div>
+                <div className="absolute inset-0 bg-ivory/30 pointer-events-none"></div>
+              </div>
 
               {/* SECTION 1: HERO / INTRO (Edge-to-Edge 100% Mobile Viewport) */}
               <HeroSection
@@ -237,6 +244,12 @@ export default function App() {
                 {/* SECTION 2: OPENING QUOTE */}
                 <OpeningQuote />
 
+                <div className="flex items-center justify-center gap-3 opacity-80 select-none">
+                  <span className="w-12 h-[1px] bg-antGold"></span>
+                  <span className="text-antGold text-xs">❦</span>
+                  <span className="w-12 h-[1px] bg-antGold"></span>
+                </div>
+
                 {/* SECTION 3: KEDUA MEMPELAI */}
                 <CoupleSection couple={weddingData.couple} />
 
@@ -249,6 +262,12 @@ export default function App() {
                 {/* SECTION 5: DETAIL ACARA */}
                 <EventDetails events={weddingData.events} />
 
+                <div className="flex items-center justify-center gap-3 opacity-80 select-none">
+                  <span className="w-12 h-[1px] bg-antGold"></span>
+                  <span className="text-antGold text-xs">❦</span>
+                  <span className="w-12 h-[1px] bg-antGold"></span>
+                </div>
+
                 {/* SECTION 6: MAPS & DIRECTION */}
                 <MapSection maps={weddingData.maps} />
 
@@ -258,14 +277,20 @@ export default function App() {
                 {/* SECTION 8: PHOTO GALLERY */}
                 <Gallery gallery={weddingData.gallery} />
 
+                <div className="flex items-center justify-center gap-3 opacity-80 select-none">
+                  <span className="w-12 h-[1px] bg-antGold"></span>
+                  <span className="text-antGold text-xs">❦</span>
+                  <span className="w-12 h-[1px] bg-antGold"></span>
+                </div>
+
                 {/* SECTION 9: RSVP FORM */}
-                <RSVPForm />
+                <RSVPForm guestName={guestName} />
 
                 {/* SECTION 10: AMPLOP DIGITAL */}
                 <DigitalEnvelope gift={weddingData.gift} onCopySuccess={triggerToast} />
 
                 {/* SECTION 11: UCAPAN TAMU (GUESTBOOK) */}
-                <GuestWishes />
+                <GuestWishes guestName={guestName} />
 
                 {/* FOOTER */}
                 <Footer couple={weddingData.couple} />

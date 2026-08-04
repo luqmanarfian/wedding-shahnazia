@@ -124,4 +124,10 @@ describe("RSVPForm Component", () => {
       expect(globalThis.fetch).toHaveBeenCalled();
     });
   });
+
+  it("auto-fills name input field when guestName prop is passed", () => {
+    render(<RSVPForm guestName="Lancy" />);
+    const nameInput = screen.getByDisplayValue("Lancy");
+    expect(nameInput).toBeInTheDocument();
+  });
 });

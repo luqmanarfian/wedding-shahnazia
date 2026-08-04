@@ -10,12 +10,16 @@ describe("DigitalEnvelope Component", () => {
     vi.restoreAllMocks();
   });
 
-  it("renders bank account name, holder, and number", () => {
+  it("renders bank account names, holders, and numbers for both accounts", () => {
     render(<DigitalEnvelope gift={giftData} onCopySuccess={vi.fn()} />);
 
-    expect(screen.getByText(giftData.bankName)).toBeInTheDocument();
-    expect(screen.getByText(giftData.accountHolder)).toBeInTheDocument();
-    expect(screen.getByText(giftData.accountNumber)).toBeInTheDocument();
+    expect(screen.getByText("Bank Mandiri")).toBeInTheDocument();
+    expect(screen.getByText("Damarjati Wiroprojo")).toBeInTheDocument();
+    expect(screen.getByText("1220009935456")).toBeInTheDocument();
+
+    expect(screen.getByText("Bank BCA")).toBeInTheDocument();
+    expect(screen.getByText("Shahnazia Triannita Puteri")).toBeInTheDocument();
+    expect(screen.getByText("6820850660")).toBeInTheDocument();
   });
 
   it("copies account number using navigator.clipboard when available", async () => {
@@ -29,10 +33,10 @@ describe("DigitalEnvelope Component", () => {
 
     render(<DigitalEnvelope gift={giftData} onCopySuccess={handleCopySuccess} />);
 
-    const copyButton = screen.getByRole("button", { name: /salin nomor rekening/i });
-    fireEvent.click(copyButton);
+    const copyButtons = screen.getAllByRole("button", { name: /salin nomor rekening/i });
+    fireEvent.click(copyButtons[0]);
 
-    expect(writeTextMock).toHaveBeenCalledWith(giftData.accountNumber);
+    expect(writeTextMock).toHaveBeenCalledWith("1220009935456");
     await vi.waitFor(() => {
       expect(handleCopySuccess).toHaveBeenCalledWith("Nomor Rekening Berhasil Disalin");
     });
@@ -49,8 +53,8 @@ describe("DigitalEnvelope Component", () => {
 
     render(<DigitalEnvelope gift={giftData} />);
 
-    const copyButton = screen.getByRole("button", { name: /salin nomor rekening/i });
-    fireEvent.click(copyButton);
+    const copyButtons = screen.getAllByRole("button", { name: /salin nomor rekening/i });
+    fireEvent.click(copyButtons[0]);
 
     await vi.waitFor(() => {
       expect(consoleErrorSpy).toHaveBeenCalled();
@@ -67,8 +71,8 @@ describe("DigitalEnvelope Component", () => {
 
     render(<DigitalEnvelope gift={giftData} onCopySuccess={handleCopySuccess} />);
 
-    const copyButton = screen.getByRole("button", { name: /salin nomor rekening/i });
-    fireEvent.click(copyButton);
+    const copyButtons = screen.getAllByRole("button", { name: /salin nomor rekening/i });
+    fireEvent.click(copyButtons[1]);
 
     await vi.waitFor(() => {
       expect(handleCopySuccess).toHaveBeenCalledWith("Nomor Rekening Berhasil Disalin");

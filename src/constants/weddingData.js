@@ -16,14 +16,14 @@ export const weddingData = {
       name: "Damarjati Wiroprojo",
       shortName: "Damarjati",
       parentInfo: "Putra",
-      parents: "Keluarga Bpk Wahyu Jadmono Kresno & Ibu Dehwin Saptamala",
+      parents: "Bpk Wahyu Jadmono Kresno & Ibu Dehwin Saptamala",
       photo: maleImg
     },
     bride: {
       name: "Shahnazia Triannita Puteri",
       shortName: "Shahnazia",
       parentInfo: "Putri",
-      parents: "Keluarga Bpk H. Usman Alie Wandana & Ibu Hj. Mujiyati",
+      parents: "Bpk H. Usman Alie Wandana & Ibu Hj. Mujiyati",
       photo: femaleImg
     },
     couple:{
@@ -40,14 +40,14 @@ export const weddingData = {
     akad: {
       title: "Akad Nikah",
       dayDate: "Sabtu, 5 September 2026",
-      time: "11:00 WIB",
+      time: "08:30 WIB",
       venue: "Ballroom Royal Hotel Bogor",
       address: "Jl. Pajajaran No.12, Bogor, Jawa Barat"
     },
     resepsi: {
       title: "Resepsi",
       dayDate: "Sabtu, 5 September 2026",
-      time: "11:00 WIB - Selesai",
+      time: "11:00 WIB - 13:00 WIB",
       venue: "Ballroom Royal Hotel Bogor",
       address: "Jl. Pajajaran No.12, Bogor, Jawa Barat"
     }
@@ -96,12 +96,22 @@ export const weddingData = {
       { id: 5, type: "portrait", url: gallery5 }
     ]
   },
-  gift: {
-    bankName: "Bank BCA",
-    isPrimary: true,
-    accountNumber: "000000000",
-    accountHolder: "Lancy Hoshino"
-  },
+  gift: [
+    {
+      id: "mandiri",
+      bankName: "Bank Mandiri",
+      isPrimary: true,
+      accountNumber: "1220009935456",
+      accountHolder: "Damarjati Wiroprojo"
+    },
+    {
+      id: "bca",
+      bankName: "Bank BCA",
+      isPrimary: false,
+      accountNumber: "6820850660",
+      accountHolder: "Shahnazia Triannita Puteri"
+    }
+  ],
   api: {
     appsScriptUrl: import.meta.env.VITE_APPS_SCRIPT_URL || ""
   },
@@ -109,7 +119,7 @@ export const weddingData = {
     // Background images served from public/ via absolute URL path
     desktopCoverBg: "/images/bg-cover.jpg",
     mobileCoverBg: "/images/bg-cover.jpg",
-    mainContentBg: "/images/bg-content-pattern.jpg",
+    mainContentBg: "/images/bg-potrait.webp",
     // Audio served from public/ via absolute URL path
     bgMusicUrl: "/audio/bg-music.mp3",
     // Video assets served from public/ via absolute URL path

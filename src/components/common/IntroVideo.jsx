@@ -3,18 +3,25 @@ import React, { useRef, useEffect, useState } from "react";
 
 export default function IntroVideo({ videoUrl, onEnded }) {
   const videoRef = useRef(null);
+  const skipTimerRef = useRef(null);
   const [isFadingOut, setIsFadingOut] = useState(false);
 
   const handleSkip = () => {
     if (isFadingOut) return;
     setIsFadingOut(true);
-    const timer = setTimeout(() => {
+    if (skipTimerRef.current) clearTimeout(skipTimerRef.current);
+    skipTimerRef.current = setTimeout(() => {
       if (onEnded) {
         onEnded();
       }
     }, 500);
-    return () => clearTimeout(timer);
   };
+
+  useEffect(() => {
+    return () => {
+      if (skipTimerRef.current) clearTimeout(skipTimerRef.current);
+    };
+  }, []);
 
   useEffect(() => {
     const video = videoRef.current;

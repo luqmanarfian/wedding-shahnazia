@@ -1,6 +1,7 @@
 // src/components/sections/GuestWishes.jsx
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { submitToAppsScript } from "../../services/apiService";
+import bgCardPortrait from "../../assets/images/bg-card-potrait.webp";
 
 const STATIC_WISHES = [
   {
@@ -15,8 +16,15 @@ const STATIC_WISHES = [
   }
 ];
 
-export default function GuestWishes() {
-  const [sender, setSender] = useState("");
+export default function GuestWishes({ guestName = "" }) {
+  const initialSender = guestName && guestName !== "Tamu Kehormatan" ? guestName : "";
+  const [sender, setSender] = useState(initialSender);
+
+  useEffect(() => {
+    if (guestName && guestName !== "Tamu Kehormatan") {
+      setSender(guestName);
+    }
+  }, [guestName]);
   const [text, setText] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");
@@ -69,77 +77,90 @@ export default function GuestWishes() {
 
   return (
     <section id="guestbook" className="reveal max-w-md mx-auto space-y-6">
-      <div className="bg-softWhite/90 backdrop-blur-sm rounded-2xl p-8 border-2 border-antGold/30 shadow-xl relative">
-        <div className="text-center mb-6">
-          <span className="font-sans text-xs uppercase tracking-[0.25em] text-sepia">
-            Wishes Book
-          </span>
-          <h2 className="font-heading text-4xl font-semibold italic text-espresso mt-1">
-            Kirim Ucapan
-          </h2>
-          <p className="text-sm text-sepia/80 mt-2">
-            “Setiap doa dan harapan dari kalian akan menjadi bagian dari cerita kami💖”
-          </p>
-          <div className="w-16 h-[1px] bg-antGold mx-auto mt-3"></div>
-        </div>
+      <div className="relative rounded-2xl overflow-hidden p-6 sm:p-8 text-espresso shadow-xl border-2 border-antGold/40 vintage-border-thin">
+        {/* Layer 1: Background Image bg-card-potrait.webp */}
+        <img
+          src={bgCardPortrait}
+          alt="Guest Wishes Card Background"
+          className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none select-none"
+        />
 
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label className="block font-sans text-xs uppercase tracking-wider text-sepia mb-2 text-left">
-              Nama Pengirim
-            </label>
-            <input
-              type="text"
-              required
-              disabled={isSubmitting}
-              value={sender}
-              onChange={(e) => setSender(e.target.value)}
-              className="w-full px-4 py-3 rounded-lg bg-ivory border border-antGold/40 text-espresso placeholder-sepia/50 font-sans text-sm focus:outline-none focus:border-sepia transition-all duration-300 disabled:opacity-60"
-              placeholder="Masukkan nama Anda"
-            />
-          </div>
-          <div>
-            <label className="block font-sans text-xs uppercase tracking-wider text-sepia mb-2 text-left">
-              Ucapan Doa Restu
-            </label>
-            <textarea
-              rows="4"
-              required
-              disabled={isSubmitting}
-              value={text}
-              onChange={(e) => setText(e.target.value)}
-              className="w-full px-4 py-3 rounded-lg bg-ivory border border-antGold/40 text-espresso placeholder-sepia/50 font-sans text-sm focus:outline-none focus:border-sepia transition-all duration-300 disabled:opacity-60"
-              placeholder="Tuliskan ucapan selamat dan doa tulus Anda..."
-            ></textarea>
+        {/* Layer 2: Light Tint Overlay */}
+        <div className="absolute inset-0 bg-ivory/30 pointer-events-none"></div>
+
+        {/* Layer 3: Content Layer */}
+        <div className="relative z-10">
+          <div className="text-center mb-6">
+            <span className="font-sans text-xs uppercase tracking-[0.25em] text-sepia">
+              Wishes Book
+            </span>
+            <h2 className="font-heading text-4xl font-semibold italic text-espresso mt-1">
+              Kirim Ucapan
+            </h2>
+            <p className="text-sm text-sepia/80 mt-2">
+              “Setiap doa dan harapan dari kalian akan menjadi bagian dari cerita kami💖”
+            </p>
+            <div className="w-16 h-[1px] bg-antGold mx-auto mt-3"></div>
           </div>
 
-          {submitError && (
-            <div className="p-3 bg-red-100/80 border border-red-300 text-red-800 rounded-lg text-xs font-sans text-left">
-              ⚠️ {submitError}
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div>
+              <label className="block font-sans text-xs uppercase tracking-wider text-sepia mb-2 text-left">
+                Nama Pengirim
+              </label>
+              <input
+                type="text"
+                required
+                disabled={isSubmitting}
+                value={sender}
+                onChange={(e) => setSender(e.target.value)}
+                className="w-full px-4 py-3 rounded-lg bg-ivory border border-antGold/40 text-espresso placeholder-sepia/50 font-sans text-sm focus:outline-none focus:border-sepia transition-all duration-300 disabled:opacity-60"
+                placeholder="Masukkan nama Anda"
+              />
             </div>
-          )}
-
-          {submitSuccess && (
-            <div className="p-3 bg-green-100/80 border border-green-300 text-green-800 rounded-lg text-xs font-sans text-left">
-              ✓ Ucapan Anda berhasil terkirim dan tersimpan!
+            <div>
+              <label className="block font-sans text-xs uppercase tracking-wider text-sepia mb-2 text-left">
+                Ucapan Doa Restu
+              </label>
+              <textarea
+                rows="4"
+                required
+                disabled={isSubmitting}
+                value={text}
+                onChange={(e) => setText(e.target.value)}
+                className="w-full px-4 py-3 rounded-lg bg-ivory border border-antGold/40 text-espresso placeholder-sepia/50 font-sans text-sm focus:outline-none focus:border-sepia transition-all duration-300 disabled:opacity-60"
+                placeholder="Tuliskan ucapan selamat dan doa tulus Anda..."
+              ></textarea>
             </div>
-          )}
 
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            className="w-full font-sans text-xs uppercase tracking-[0.25em] bg-sepia text-ivory py-4 rounded-lg border border-antGold hover:bg-espresso transition-all duration-300 shadow-md transform active:scale-[0.98] cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed inline-flex items-center justify-center gap-2"
-          >
-            {isSubmitting ? (
-              <>
-                <i className="fa-solid fa-spinner animate-spin text-sm"></i>
-                Mengirim Ucapan...
-              </>
-            ) : (
-              "Kirim Ucapan"
+            {submitError && (
+              <div className="p-3 bg-red-100/80 border border-red-300 text-red-800 rounded-lg text-xs font-sans text-left">
+                ⚠️ {submitError}
+              </div>
             )}
-          </button>
-        </form>
+
+            {submitSuccess && (
+              <div className="p-3 bg-green-100/80 border border-green-300 text-green-800 rounded-lg text-xs font-sans text-left">
+                ✓ Ucapan Anda berhasil terkirim dan tersimpan!
+              </div>
+            )}
+
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="w-full font-sans text-xs uppercase tracking-[0.25em] bg-sepia text-ivory py-4 rounded-lg border border-antGold hover:bg-espresso transition-all duration-300 shadow-md transform active:scale-[0.98] cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed inline-flex items-center justify-center gap-2"
+            >
+              {isSubmitting ? (
+                <>
+                  <i className="fa-solid fa-spinner animate-spin text-sm"></i>
+                  Mengirim Ucapan...
+                </>
+              ) : (
+                "Kirim Ucapan"
+              )}
+            </button>
+          </form>
+        </div>
       </div>
 
       {/* Ucapan List container */}

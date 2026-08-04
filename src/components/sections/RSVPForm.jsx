@@ -1,7 +1,8 @@
 // src/components/sections/RSVPForm.jsx
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { submitToAppsScript } from "../../services/apiService";
+import bgCardPortrait from "../../assets/images/bg-card-potrait.webp";
 
 /**
  * Helper generator untuk membuat QR_Code_ID dengan format WEDDING-{timestamp}-{random4digit}
@@ -12,8 +13,15 @@ const generateQrCodeId = () => {
   return `WEDDING-${timestamp}-${random4Digit}`;
 };
 
-export default function RSVPForm() {
-  const [name, setName] = useState("");
+export default function RSVPForm({ guestName = "" }) {
+  const initialName = guestName && guestName !== "Tamu Kehormatan" ? guestName : "";
+  const [name, setName] = useState(initialName);
+
+  useEffect(() => {
+    if (guestName && guestName !== "Tamu Kehormatan") {
+      setName(guestName);
+    }
+  }, [guestName]);
   const [count, setCount] = useState("1");
   const [status, setStatus] = useState("Hadir");
   const [message, setMessage] = useState("");
@@ -90,18 +98,30 @@ export default function RSVPForm() {
   return (
     <>
       <section id="rsvp" className="reveal max-w-md mx-auto">
-        <div className="bg-softWhite/90 backdrop-blur-sm rounded-2xl p-8 border-2 border-antGold/30 shadow-xl relative">
-          <div className="text-center mb-6">
-            <span className="font-sans text-xs uppercase tracking-[0.25em] text-sepia font-medium">
-              RSVP
-            </span>
-            <h2 className="font-heading text-4xl font-semibold italic text-espresso mt-1">
-              Konfirmasi Kehadiran
-            </h2>
-            <div className="w-16 h-[1px] bg-antGold mx-auto mt-3"></div>
-          </div>
+        <div className="relative rounded-2xl overflow-hidden p-6 sm:p-8 text-espresso shadow-xl border-2 border-antGold/40 vintage-border-thin">
+          {/* Layer 1: Background Image bg-card-potrait.webp */}
+          <img
+            src={bgCardPortrait}
+            alt="RSVP Form Background"
+            className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none select-none"
+          />
 
-          <form onSubmit={handleSubmit} className="space-y-4 text-left">
+          {/* Layer 2: Light Tint Overlay for Optimal Readability */}
+          <div className="absolute inset-0 bg-ivory/30 pointer-events-none"></div>
+
+          {/* Layer 3: Content Layer */}
+          <div className="relative z-10">
+            <div className="text-center mb-6">
+              <span className="font-sans text-xs uppercase tracking-[0.25em] text-sepia font-medium">
+                RSVP
+              </span>
+              <h2 className="font-heading text-4xl font-semibold italic text-espresso mt-1">
+                Konfirmasi Kehadiran
+              </h2>
+              <div className="w-16 h-[1px] bg-antGold mx-auto mt-3"></div>
+            </div>
+
+            <form onSubmit={handleSubmit} className="space-y-4 text-left">
             <div>
               <label className="block font-sans text-xs uppercase tracking-wider text-sepia mb-2">
                 Nama Lengkap
@@ -215,21 +235,31 @@ export default function RSVPForm() {
             </button>
           </form>
         </div>
-      </section>
+      </div>
+    </section>
 
       {/* CONFIRMATION / QR MODAL POPUP (Rendered via React Portal to escape CSS transform containing block) */}
       {showModal &&
         createPortal(
           <div className="fixed inset-0 lg:left-[55%] bg-espresso/80 backdrop-blur-md z-[9999] flex items-center justify-center p-4">
-            <div className="bg-ivory rounded-2xl max-w-sm w-full max-h-[90vh] overflow-y-auto p-6 sm:p-8 border-2 border-antGold text-center relative paper-overlay my-auto shadow-2xl">
-              {/* Close button */}
-              <button
-                onClick={() => setShowModal(false)}
-                className="absolute top-4 right-4 text-espresso/70 hover:text-espresso text-xl cursor-pointer"
-                aria-label="Close Ticket Modal"
-              >
-                <i className="fa-solid fa-xmark"></i>
-              </button>
+            <div className="relative rounded-2xl overflow-hidden max-w-sm w-full max-h-[90vh] overflow-y-auto p-6 sm:p-8 border-2 border-antGold text-center my-auto shadow-2xl vintage-border-thin">
+              {/* Layer 1: Background Image bg-card-potrait.webp */}
+              <img
+                src={bgCardPortrait}
+                alt="Ticket Modal Background"
+                className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none select-none"
+              />
+              <div className="absolute inset-0 bg-ivory/35 pointer-events-none"></div>
+
+              <div className="relative z-10">
+                {/* Close button */}
+                <button
+                  onClick={() => setShowModal(false)}
+                  className="absolute -top-2 -right-2 text-espresso/70 hover:text-espresso text-xl cursor-pointer"
+                  aria-label="Close Ticket Modal"
+                >
+                  <i className="fa-solid fa-xmark"></i>
+                </button>
 
               {/* CONDITIONAL RENDERING BASED ON ATTENDANCE STATUS */}
               {status === "Hadir" ? (
@@ -295,9 +325,10 @@ export default function RSVPForm() {
                 </>
               )}
             </div>
-          </div>,
-          document.body
-        )}
+          </div>
+        </div>,
+        document.body
+      )}
     </>
   );
 }

@@ -36,7 +36,7 @@ export default function LoveStory({ loveStory }) {
   return (
     <section id="story" className="reveal max-w-md mx-auto px-1 sm:px-0">
       {/* 1 Single Unified Card Container */}
-      <div className="relative rounded-2xl overflow-hidden p-6 sm:p-8 border border-antGold/30 shadow-2xl text-center vintage-border-thin bg-softWhite/90">
+      <div className="relative rounded-2xl overflow-hidden p-6 sm:p-8 border border-antGold/30 shadow-2xl text-center vintage-border-thin bg-softWhite/90 card-hover-effect">
         {/* Layer 1: Background Image bgCardPortrait */}
         <img
           src={bgCardPortrait}
@@ -69,10 +69,10 @@ export default function LoveStory({ loveStory }) {
           <div className="absolute inset-2 border border-antGold/20 pointer-events-none rounded-xl"></div>
 
           {/* Subtle Javanese Corner Ornaments */}
-          <span className="absolute top-3 left-3 text-antGold/40 text-xs select-none">❦</span>
-          <span className="absolute top-3 right-3 text-antGold/40 text-xs select-none">❦</span>
-          <span className="absolute bottom-3 left-3 text-antGold/40 text-xs select-none">❦</span>
-          <span className="absolute bottom-3 right-3 text-antGold/40 text-xs select-none">❦</span>
+          <span className="absolute top-3 left-3 text-antGold/40 text-xs select-none animate-float-gentle">❦</span>
+          <span className="absolute top-3 right-3 text-antGold/40 text-xs select-none animate-float-gentle">❦</span>
+          <span className="absolute bottom-3 left-3 text-antGold/40 text-xs select-none animate-float-gentle">❦</span>
+          <span className="absolute bottom-3 right-3 text-antGold/40 text-xs select-none animate-float-gentle">❦</span>
 
           {/* Section Header Inside Unified Card */}
           <div className="text-center mb-8 relative pt-2">
@@ -86,7 +86,7 @@ export default function LoveStory({ loveStory }) {
             {/* Borobudur / Javanese Header Divider */}
             <div className="flex items-center justify-center gap-3 mt-3">
               <span className="h-[1px] w-12 bg-gradient-to-r from-transparent to-antGold/60"></span>
-              <span className="text-antGold text-xs select-none">❦</span>
+              <span className="text-antGold text-xs select-none animate-float-gentle inline-block">❦</span>
               <span className="h-[1px] w-12 bg-gradient-to-l from-transparent to-antGold/60"></span>
             </div>
           </div>
