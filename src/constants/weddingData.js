@@ -26,7 +26,7 @@ export const weddingData = {
       parents: "Bpk H. Usman Alie Wandana & Ibu Hj. Mujiyati",
       photo: femaleImg
     },
-    couple:{
+    couple: {
       photo: coupleMainImg
     }
   },
