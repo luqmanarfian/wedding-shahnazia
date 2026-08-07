@@ -149,8 +149,6 @@ export default function RSVPForm({ guestName = "" }) {
               >
                 <option value="1">1 Orang</option>
                 <option value="2">2 Orang</option>
-                <option value="3">3 Orang</option>
-                <option value="4">4 Orang</option>
               </select>
             </div>
 

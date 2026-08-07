@@ -54,10 +54,9 @@ describe("RSVPForm Component", () => {
           qrCodeId: expect.stringMatching(/^WEDDING-\d+-\d{4}$/)
         })
       );
+      expect(screen.getByText(/tiket kehadiran/i)).toBeInTheDocument();
+      expect(screen.getByRole("button", { name: /unduh gambar qr/i })).toBeInTheDocument();
     });
-
-    expect(screen.getByText(/tiket kehadiran/i)).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: /unduh gambar qr/i })).toBeInTheDocument();
 
     // Close modal
     const closeBtn = screen.getByRole("button", { name: /close ticket modal/i });

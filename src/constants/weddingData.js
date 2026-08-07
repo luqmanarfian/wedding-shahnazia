@@ -13,14 +13,14 @@ import femaleImg from "../assets/images/gallery/female.jpeg";
 export const weddingData = {
   couple: {
     groom: {
-      name: "Damarjati Wiroprojo",
+      name: "Damarjati Wiroprojo, S.AP.",
       shortName: "Damarjati",
       parentInfo: "Putra",
       parents: "Bpk Wahyu Jadmono Kresno & Ibu Dehwin Saptamala",
       photo: maleImg
     },
     bride: {
-      name: "Shahnazia Triannita Puteri",
+      name: "Shahnazia Triannita Puteri, SH, M.Kn.",
       shortName: "Shahnazia",
       parentInfo: "Putri",
       parents: "Bpk H. Usman Alie Wandana & Ibu Hj. Mujiyati",
@@ -42,14 +42,14 @@ export const weddingData = {
       dayDate: "Sabtu, 5 September 2026",
       time: "08:30 WIB",
       venue: "Ballroom Royal Hotel Bogor",
-      address: "Jl. Pajajaran No.12, Bogor, Jawa Barat"
+      address: "Jl. Ir. H. Juanda No.16  Paledang Kota Bogor"
     },
     resepsi: {
       title: "Resepsi",
       dayDate: "Sabtu, 5 September 2026",
       time: "11:00 WIB - 13:00 WIB",
       venue: "Ballroom Royal Hotel Bogor",
-      address: "Jl. Pajajaran No.12, Bogor, Jawa Barat"
+      address: "Jl. Ir. H. Juanda No.16  Paledang Kota Bogor"
     }
   },
   maps: {

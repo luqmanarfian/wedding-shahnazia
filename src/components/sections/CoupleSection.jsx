@@ -7,23 +7,23 @@ export default function CoupleSection({ couple }) {
   const { groom, bride } = couple;
 
   return (
-    <section id="mempelai" className="reveal space-y-10 max-w-md mx-auto">
-      <div className="text-center">
-        <span className="font-sans text-xs uppercase tracking-[0.25em] text-sepia">
+    <section id="mempelai" className="reveal space-y-8 sm:space-y-10 max-w-md mx-auto">
+      {/* Section Header */}
+      <div className="text-center px-4 sm:px-0">
+        <span className="font-sans text-[11px] sm:text-xs uppercase tracking-[0.25em] text-sepia font-medium">
           Assalamualaikum Wr. Wb.
         </span>
-        <h2 className="font-heading text-4xl font-semibold italic text-espresso mt-2">
+        <h2 className="font-heading text-[clamp(1.85rem,6.5vw,2.5rem)] font-semibold italic text-espresso mt-1.5 leading-tight">
           Kedua Mempelai
         </h2>
-        <p className="text-sm text-sepia max-w-xs mx-auto mt-2 leading-relaxed">
+        <p className="font-sans text-xs sm:text-sm text-sepia max-w-[300px] sm:max-w-xs mx-auto mt-2 leading-relaxed font-medium">
           Dengan memohon rahmat dan rida Allah SWT, kami dengan senang hati mengundang Anda ke
-        perayaan pernikahan kami:
+          perayaan pernikahan kami:
         </p>
       </div>
 
-
       {/* Mempelai Wanita */}
-      <div className="reveal reveal-slide-left delay-100 relative rounded-2xl overflow-hidden border-2 border-antGold/40 shadow-xl text-center p-6 text-espresso vintage-border-thin card-hover-effect">
+      <div className="reveal reveal-slide-left delay-100 relative rounded-2xl overflow-hidden border-2 border-antGold/40 shadow-xl text-center p-5 sm:p-7 text-espresso vintage-border-thin card-hover-effect">
         {/* Layer 1: Background Image bg-card-pengantin.webp */}
         <img
           src={bgCardPengantin}
@@ -35,7 +35,7 @@ export default function CoupleSection({ couple }) {
         <div className="absolute inset-0 bg-ivory/30 pointer-events-none"></div>
 
         {/* Layer 3: Content Layer */}
-        <div className="relative z-10">
+        <div className="relative z-10 px-1 sm:px-2">
           {/* Circular frame */}
           <div className="w-32 h-32 mx-auto rounded-full overflow-hidden border-2 border-antGold shadow-lg mb-4 bg-softCream transition-transform duration-500 hover:scale-105">
             <img
@@ -47,18 +47,20 @@ export default function CoupleSection({ couple }) {
               }}
             />
           </div>
-          <h3 className="font-heading text-3xl font-bold italic text-espresso drop-shadow-sm">{bride.name}</h3>
-          <p className="font-sans text-xs tracking-wider text-antGold uppercase mt-1 mb-3 font-semibold">
+          <h3 className="font-heading text-[clamp(1.35rem,5.2vw,1.75rem)] font-bold italic text-espresso leading-[1.22] tracking-normal max-w-[290px] sm:max-w-xs mx-auto drop-shadow-sm break-words">
+            {bride.name}
+          </h3>
+          <p className="font-sans text-[11px] sm:text-xs tracking-[0.2em] text-antGold uppercase mt-2 mb-2.5 font-semibold">
             {bride.parentInfo}
           </p>
-          <p className="text-sm text-sepia leading-relaxed font-medium">
+          <p className="font-sans text-xs sm:text-sm text-sepia leading-relaxed font-medium max-w-[280px] sm:max-w-xs mx-auto">
             Putri dari {bride.parents}
           </p>
         </div>
       </div>
       
       {/* Mempelai Pria */}
-      <div className="reveal reveal-slide-right delay-200 relative rounded-2xl overflow-hidden border-2 border-antGold/40 shadow-xl text-center p-6 text-espresso vintage-border-thin card-hover-effect">
+      <div className="reveal reveal-slide-right delay-200 relative rounded-2xl overflow-hidden border-2 border-antGold/40 shadow-xl text-center p-5 sm:p-7 text-espresso vintage-border-thin card-hover-effect">
         {/* Layer 1: Background Image bg-card-pengantin.webp */}
         <img
           src={bgCardPengantin}
@@ -70,7 +72,7 @@ export default function CoupleSection({ couple }) {
         <div className="absolute inset-0 bg-ivory/30 pointer-events-none"></div>
 
         {/* Layer 3: Content Layer */}
-        <div className="relative z-10">
+        <div className="relative z-10 px-1 sm:px-2">
           {/* Circular frame */}
           <div className="w-32 h-32 mx-auto rounded-full overflow-hidden border-2 border-antGold shadow-lg mb-4 bg-softCream transition-transform duration-500 hover:scale-105">
             <img
@@ -82,17 +84,17 @@ export default function CoupleSection({ couple }) {
               }}
             />
           </div>
-          <h3 className="font-heading text-3xl font-bold italic text-espresso drop-shadow-sm">{groom.name}</h3>
-          <p className="font-sans text-xs tracking-wider text-antGold uppercase mt-1 mb-3 font-semibold">
+          <h3 className="font-heading text-[clamp(1.35rem,5.2vw,1.75rem)] font-bold italic text-espresso leading-[1.22] tracking-normal max-w-[290px] sm:max-w-xs mx-auto drop-shadow-sm break-words">
+            {groom.name}
+          </h3>
+          <p className="font-sans text-[11px] sm:text-xs tracking-[0.2em] text-antGold uppercase mt-2 mb-2.5 font-semibold">
             {groom.parentInfo}
           </p>
-          <p className="text-sm text-sepia leading-relaxed font-medium">
+          <p className="font-sans text-xs sm:text-sm text-sepia leading-relaxed font-medium max-w-[280px] sm:max-w-xs mx-auto">
             Putra dari {groom.parents}
           </p>
         </div>
       </div>
-
-      
     </section>
   );
 }
