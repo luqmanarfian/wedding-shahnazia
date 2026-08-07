@@ -53,7 +53,7 @@ export default function CoupleSection({ couple }) {
           <p className="font-sans text-[11px] sm:text-xs tracking-[0.2em] text-antGold uppercase mt-2 mb-2.5 font-semibold">
             {bride.parentInfo}
           </p>
-          <p className="font-sans text-xs sm:text-sm text-sepia leading-relaxed font-medium max-w-[280px] sm:max-w-xs mx-auto">
+          <p className="font-sans text-xs sm:text-sm text-sepia leading-relaxed font-medium max-w-[280px] sm:max-w-xs mx-auto whitespace-pre-line">
             Putri dari {bride.parents}
           </p>
         </div>
@@ -90,7 +90,7 @@ export default function CoupleSection({ couple }) {
           <p className="font-sans text-[11px] sm:text-xs tracking-[0.2em] text-antGold uppercase mt-2 mb-2.5 font-semibold">
             {groom.parentInfo}
           </p>
-          <p className="font-sans text-xs sm:text-sm text-sepia leading-relaxed font-medium max-w-[280px] sm:max-w-xs mx-auto">
+          <p className="font-sans text-xs sm:text-sm text-sepia leading-relaxed font-medium max-w-[280px] sm:max-w-xs mx-auto whitespace-pre-line">
             Putra dari {groom.parents}
           </p>
         </div>

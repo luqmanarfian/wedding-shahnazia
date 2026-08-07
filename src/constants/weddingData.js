@@ -16,14 +16,14 @@ export const weddingData = {
       name: "Damarjati Wiroprojo, S.AP.",
       shortName: "Damarjati",
       parentInfo: "Putra",
-      parents: "Bpk Wahyu Jadmono Kresno & \r\n Ibu Dehwin Saptamala",
+      parents: "Bpk Wahyu Jadmono Kresno &\nIbu Dehwin Saptamala",
       photo: maleImg
     },
     bride: {
       name: "Shahnazia Triannita Puteri, SH, M.Kn.",
       shortName: "Shahnazia",
       parentInfo: "Putri",
-      parents: "Bpk H. Usman Alie Wandhana & \r\n Ibu Hj. Mujiyati",
+      parents: "Bpk H. Usman Alie Wandhana &\nIbu Hj. Mujiyati",
       photo: femaleImg
     },
     couple: {
