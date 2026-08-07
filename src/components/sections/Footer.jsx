@@ -8,7 +8,7 @@ export default function Footer({ couple }) {
     <footer className="reveal pt-10 pb-6 text-center max-w-md mx-auto border-t border-antGold/20">
       <div className="space-y-4">
         <p className="font-heading text-3xl font-semibold italic text-espresso">
-          {groom.shortName} & {bride.shortName}
+           {bride.shortName} & {groom.shortName}
         </p>
         <p className="font-sans text-[10px] tracking-[0.3em] text-sepia uppercase">
           TERIMA KASIH ATAS DOA DAN RESTUNYA

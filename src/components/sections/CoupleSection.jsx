@@ -17,7 +17,7 @@ export default function CoupleSection({ couple }) {
           Kedua Mempelai
         </h2>
         <p className="font-sans text-xs sm:text-sm text-sepia max-w-[300px] sm:max-w-xs mx-auto mt-2 leading-relaxed font-medium">
-          Dengan memohon rahmat dan rida Allah SWT, kami dengan senang hati mengundang Anda ke
+          Dengan memohon rahmat dan rida Allah SWT, kami dengan senang hati mengundang Bapak/Ibu/Saudara/i ke
           perayaan pernikahan kami:
         </p>
       </div>

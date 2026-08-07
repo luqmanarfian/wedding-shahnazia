@@ -16,14 +16,14 @@ export const weddingData = {
       name: "Damarjati Wiroprojo, S.AP.",
       shortName: "Damarjati",
       parentInfo: "Putra",
-      parents: "Bpk Wahyu Jadmono Kresno & Ibu Dehwin Saptamala",
+      parents: "Bpk Wahyu Jadmono Kresno & \r\nIbu Dehwin Saptamala",
       photo: maleImg
     },
     bride: {
       name: "Shahnazia Triannita Puteri, SH, M.Kn.",
       shortName: "Shahnazia",
       parentInfo: "Putri",
-      parents: "Bpk H. Usman Alie Wandana & Ibu Hj. Mujiyati",
+      parents: "Bpk H. Usman Alie Wandhana & \r\nIbu Hj. Mujiyati",
       photo: femaleImg
     },
     couple: {
@@ -98,18 +98,18 @@ export const weddingData = {
   },
   gift: [
     {
-      id: "mandiri",
-      bankName: "Bank Mandiri",
-      isPrimary: true,
-      accountNumber: "1220009935456",
-      accountHolder: "Damarjati Wiroprojo"
-    },
-    {
       id: "bca",
       bankName: "Bank BCA",
       isPrimary: false,
       accountNumber: "6820850660",
       accountHolder: "Shahnazia Triannita Puteri"
+    },
+    {
+      id: "mandiri",
+      bankName: "Bank Mandiri",
+      isPrimary: true,
+      accountNumber: "1220009935456",
+      accountHolder: "Damarjati Wiroprojo"
     }
   ],
   api: {

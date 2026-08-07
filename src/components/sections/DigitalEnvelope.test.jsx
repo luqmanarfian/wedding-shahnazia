@@ -36,7 +36,7 @@ describe("DigitalEnvelope Component", () => {
     const copyButtons = screen.getAllByRole("button", { name: /salin nomor rekening/i });
     fireEvent.click(copyButtons[0]);
 
-    expect(writeTextMock).toHaveBeenCalledWith("1220009935456");
+    expect(writeTextMock).toHaveBeenCalledWith(giftData[0].accountNumber);
     await vi.waitFor(() => {
       expect(handleCopySuccess).toHaveBeenCalledWith("Nomor Rekening Berhasil Disalin");
     });

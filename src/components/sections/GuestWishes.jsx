@@ -7,7 +7,7 @@ const STATIC_WISHES = [
   {
     sender: "Ilham & Devi",
     time: "Beberapa saat yang lalu",
-    text: "Selamat menempuh hidup baru Lancy dan Qiarra! Semoga selalu dilimpahi keberkahan dan kebahagiaan yang melimpah dari danau Moniyan hingga akhir hayat."
+    text: "Selamat menempuh hidup baru Shahnazia dan Damarjati! Semoga selalu dilimpahi keberkahan dan kebahagiaan yang melimpah hingga akhir hayat."
   },
   {
     sender: "Dimas & Sarah",
